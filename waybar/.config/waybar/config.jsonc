@@ -1,0 +1,48 @@
+{
+  "layer": "top",
+  "position": "top",
+  "margin-right": 10,
+  "spacing": 15,
+    // Modules displayed
+    "modules-left": [
+        "custom/archicon",
+        "hyprland/window"
+    ],
+    "modules-center": [
+        "hyprland/workspaces"
+    ],
+    "modules-right": [
+        "clock",
+        "custom/power"
+    ],
+    // Modules configuration
+    "hyprland/workspaces": {
+        "format": "{icon}",
+          "on-click": "activate",
+          "format-icons": {
+            // "active": "󰫈",
+          "empty": "󰋙",
+            "default": "󰫈"
+          },
+        "persistent-workspaces": {
+          "*": 7
+        }
+    },
+    "custom/archicon": {
+      "format": "󰣇",
+      "tooltip": false,
+      "on-click": "wofi --show drun"
+    },
+    "clock": {
+        "timezone": "Europe/Madrid",
+        "tooltip-format": "{:%Y-%m-%d}"
+    },
+    "hyprland/window": {
+      "format": "{title}"
+    },
+    "custom/power": {
+      "format": "",
+      "tooltip": false,
+      "on-click": "wlogout || shutdown now"
+    }
+} 
