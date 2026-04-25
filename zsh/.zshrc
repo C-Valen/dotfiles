@@ -28,6 +28,7 @@ if [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]]; then
 fi
 
 [[ -f ~/.zsh_keybinds ]] && source ~/.zsh_keybinds
+[[ -f ~/.zsh_aliases ]] && source ~/.zsh_aliases
 
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_REDUCE_BLANKS
