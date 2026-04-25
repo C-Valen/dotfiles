@@ -43,6 +43,6 @@
     "custom/power": {
       "format": "",
       "tooltip": false,
-      "on-click": "wlogout || shutdown now"
+      "on-click": "hyprctl dispatch exit 0 && systemctl poweroff"
     }
 } 
