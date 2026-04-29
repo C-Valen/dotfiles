@@ -1,0 +1,38 @@
+# Navigation
+alias ..='cd ..'
+alias ...='cd ../..'
+alias cls='printf "\033c"'
+
+# ls — requires eza (pacman: eza / dnf: eza)
+if command -v eza &>/dev/null; then
+  alias ls='eza'
+  alias la='eza -a'
+  alias ll='eza -alF --git'
+  alias lt='eza --tree --level=2'
+fi
+
+# bat as cat replacement (pacman: bat / dnf: bat)
+command -v bat &>/dev/null && alias cat='bat'
+
+# Git
+alias g='git status'
+alias gf='git fetch'
+alias ga='git add .'
+alias gc='git commit -m'
+alias gs='git stash -u -m'
+alias gsa='git stash apply'
+alias gsl='git stash list'
+alias gco='git checkout'
+alias gpush='git push'
+alias gfpush='git push -f'
+alias gpull='git pull'
+alias gfpull='git fetch && git pull'
+alias gl='git log --oneline --decorate --all --graph'
+
+# Yarn
+alias ydev='yarn dev'
+
+# Utilities
+mkcd() {
+    mkdir -p "$1" && cd "$1"
+}

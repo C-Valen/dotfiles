@@ -1,0 +1,8 @@
+[gpg]
+	format = ssh
+[user]
+	signingkey = ~/.ssh/id_ed25519_sk_rk.pub
+	name = C-Valen
+	email = charlie.valen@gmail.com
+[init]
+	defaultBranch = main

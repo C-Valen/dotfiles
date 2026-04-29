@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+# Deletes local branches whose remote tracking branch is gone.
+# Usage: git gone [--dry-run]
+
+set -euo pipefail
+
+DRY_RUN=false
+[[ "${1:-}" == "--dry-run" ]] && DRY_RUN=true
+
+git fetch --prune > /dev/null 2>&1
+
+branches=$(git branch -vv | awk '/: gone\]/ { print $1 }')
+
+if [[ -z "$branches" ]]; then
+  echo "No gone branches to clean up."
+  exit 0
+fi
+
+echo "Branches to remove:"
+echo "$branches" | sed 's/^/  /'
+
+if $DRY_RUN; then
+  echo "(dry run — no branches deleted)"
+  exit 0
+fi
+
+echo "$branches" | xargs -r git branch -d
+echo "Done."

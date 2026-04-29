@@ -1,0 +1,6 @@
+# Nvim lazy lockfile (generated, not config)
+**/lazy-lock.json
+
+# Machine-local secrets — create ~/.zshrc.secrets from the template
+# Never commit this file
+.zshrc.secrets

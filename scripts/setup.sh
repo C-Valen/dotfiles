@@ -2,6 +2,8 @@
 set -euo pipefail
 
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+FONTS_DIR="$HOME/.local/share/fonts"
+HACK_NERD_FONT_URL="https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Hack.zip"
 
 usage() {
   echo "Usage: $0 <profile>"
@@ -29,6 +31,23 @@ stow_layer() {
   done
 }
 
+install_fonts() {
+  if fc-list | grep -qi "HackNerdFont"; then
+    echo "  HackNerdFont already installed, skipping."
+    return
+  fi
+
+  echo "  Downloading HackNerdFont..."
+  local tmp
+  tmp="$(mktemp -d)"
+  curl -fsSL "$HACK_NERD_FONT_URL" -o "$tmp/Hack.zip"
+  mkdir -p "$FONTS_DIR"
+  unzip -o -q "$tmp/Hack.zip" "HackNerdFont-*.ttf" -d "$FONTS_DIR"
+  rm -rf "$tmp"
+  fc-cache -f "$FONTS_DIR"
+  echo "  HackNerdFont installed."
+}
+
 [[ $# -lt 1 ]] && usage
 
 PROFILE="$1"
@@ -41,11 +60,15 @@ case "$PROFILE" in
     stow_layer common
     stow_layer gui
     stow_layer arch
+    echo "Installing fonts..."
+    install_fonts
     ;;
   work)
     stow_layer common
     stow_layer gui
     stow_layer work
+    echo "Installing fonts..."
+    install_fonts
     ;;
   nas)
     stow_layer common

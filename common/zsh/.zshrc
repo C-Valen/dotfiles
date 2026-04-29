@@ -17,8 +17,13 @@ compinit
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_REDUCE_BLANKS
 setopt SHARE_HISTORY
+HISTORY_IGNORE="(&|[ ]*|ls|bg|fg|exit|reset|clear|which)"
+
+zstyle ':completion::complete:make:*:targets' call-command true
+zstyle ':completion:*:*:make:*' tag-order 'targets'
 
 [[ -f ~/.zsh_keybinds ]] && source ~/.zsh_keybinds
+[[ -f ~/.zsh_aliases ]] && source ~/.zsh_aliases
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
