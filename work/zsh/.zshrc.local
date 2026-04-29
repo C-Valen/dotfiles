@@ -1,0 +1,6 @@
+# Work (Fedora) specific zsh config — sourced by ~/.zshrc
+
+[[ "$TERM" != "linux" ]] && source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+
+source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

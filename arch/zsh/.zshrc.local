@@ -1,0 +1,10 @@
+# Arch-specific zsh config — sourced by ~/.zshrc
+
+[[ -f ~/.zsh_aliases.local ]] && source ~/.zsh_aliases.local
+
+[[ "$TERM" != "linux" ]] && source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec start-hyprland
