@@ -29,6 +29,9 @@ alias gpull='git pull'
 alias gfpull='git fetch && git pull'
 alias gl='git log --oneline --decorate --all --graph'
 
+# Lazygit
+command -v lazygit &>/dev/null && alias lg='lazygit'
+
 # Yarn
 alias ydev='yarn dev'
 
