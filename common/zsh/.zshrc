@@ -26,5 +26,6 @@ zstyle ':completion:*:*:make:*' tag-order 'targets'
 [[ -f ~/.zsh_aliases ]] && source ~/.zsh_aliases
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 command -v direnv &>/dev/null && eval "$(direnv hook zsh)"
+[[ -f ~/.config/zsh/sudo.plugin.zsh ]] && source ~/.config/zsh/sudo.plugin.zsh
 
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
