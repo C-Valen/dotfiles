@@ -1,0 +1,21 @@
+[gpg]
+	format = ssh
+[user]
+	signingkey = ~/.ssh/id_ed25519_sk_rk.pub
+	name = C-Valen
+	email = charlie.valen@gmail.com
+[init]
+	defaultBranch = main
+[core]
+	pager = delta
+	editor = nano
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	navigate = true
+	side-by-side = true
+	line-numbers = true
+[diff]
+	colorMoved = default
+[merge]
+	conflictstyle = diff3
