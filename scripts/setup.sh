@@ -39,14 +39,19 @@ install_fonts() {
     return
   fi
 
-  echo "  Downloading HackNerdFont..."
-  local tmp
-  tmp="$(mktemp -d)"
-  curl -fsSL "$HACK_NERD_FONT_URL" -o "$tmp/Hack.zip"
-  mkdir -p "$FONTS_DIR"
-  unzip -o -q "$tmp/Hack.zip" "HackNerdFont-*.ttf" -d "$FONTS_DIR"
-  rm -rf "$tmp"
-  fc-cache -f "$FONTS_DIR"
+  if command -v pacman &>/dev/null; then
+    echo "  Installing HackNerdFont via pacman..."
+    sudo pacman -S --noconfirm ttf-hack-nerd
+  else
+    echo "  Downloading HackNerdFont..."
+    local tmp
+    tmp="$(mktemp -d)"
+    curl -fsSL "$HACK_NERD_FONT_URL" -o "$tmp/Hack.zip"
+    mkdir -p "$FONTS_DIR"
+    unzip -o -q "$tmp/Hack.zip" "HackNerdFont-*.ttf" -d "$FONTS_DIR"
+    rm -rf "$tmp"
+    fc-cache -f "$FONTS_DIR"
+  fi
   echo "  HackNerdFont installed."
 }
 
