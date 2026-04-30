@@ -18,6 +18,8 @@ usage() {
 stow_layer() {
   local layer="$1"
   local layer_dir="$DOTFILES_DIR/$layer"
+  local stow_flags="--restow"
+  $DRY_RUN && stow_flags="--simulate --restow"
 
   if [[ ! -d "$layer_dir" ]]; then
     echo "Layer '$layer' not found at $layer_dir, skipping."
@@ -27,7 +29,7 @@ stow_layer() {
   for pkg in "$layer_dir"/*/; do
     pkg_name="$(basename "$pkg")"
     echo "  stowing $layer/$pkg_name"
-    stow --dir="$layer_dir" --target="$HOME" --restow "$pkg_name"
+    stow --dir="$layer_dir" --target="$HOME" $stow_flags "$pkg_name"
   done
 }
 
@@ -48,10 +50,14 @@ install_fonts() {
   echo "  HackNerdFont installed."
 }
 
+DRY_RUN=false
+[[ "${2:-}" == "--dry-run" ]] && DRY_RUN=true
+
 [[ $# -lt 1 ]] && usage
 
 PROFILE="$1"
 
+$DRY_RUN && echo "[dry-run] no changes will be made"
 echo "Setting up dotfiles for profile: $PROFILE"
 echo ""
 
