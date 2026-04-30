@@ -8,6 +8,7 @@
 	defaultBranch = main
 [core]
 	pager = delta
+	editor = nano
 [interactive]
 	diffFilter = delta --color-only
 [delta]
