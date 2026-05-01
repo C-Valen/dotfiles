@@ -31,7 +31,7 @@
     "custom/archicon": {
       "format": "󰣇",
       "tooltip": false,
-      "on-click": "wofi --show drun"
+      "on-click": "pkill wofi || wofi --show drun"
     },
     "clock": {
         "timezone": "Europe/Madrid",
