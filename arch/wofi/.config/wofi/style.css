@@ -1,0 +1,43 @@
+#window {
+    background-color: rgba(0, 0, 0, 0.75);
+    border: 1px solid #333;
+    border-radius: 10px 10px 0 0;
+}
+
+#img {
+    margin-right: 10px;
+    width: 12px;
+    height: 12px;
+}
+
+#input {
+    background-color: rgba(0, 0, 0, 0);
+    border: 1px solid #333;
+    border-radius: 10px 10px 0 0;
+}
+
+#input image {
+    color: transparent;
+    background-image: none;
+    display: none;
+}
+
+#entry {
+    padding: 6px;
+    border-radius: 0px;
+}
+
+#entry:selected {
+    background-color: rgba(255, 255, 255, 0.75);
+    outline: none;
+}
+
+#text {
+    font-family: "HackNerdFont";
+    font-size: 14px;
+    color: #DDDDDD;
+}
+
+#text:selected {
+    color: #000000;
+}
