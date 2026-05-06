@@ -1,3 +1,17 @@
-bindkey "^[[3~" delete-char
-bindkey "^[[H" beginning-of-line
-bindkey "^[[F" end-of-line
+typeset -g -A key
+key[Home]="${terminfo[khome]}"
+key[End]="${terminfo[kend]}"
+key[Delete]="${terminfo[kdch1]}"
+
+[[ -n "${key[Home]}"   ]] && bindkey "${key[Home]}"   beginning-of-line
+[[ -n "${key[End]}"    ]] && bindkey "${key[End]}"     end-of-line
+[[ -n "${key[Delete]}" ]] && bindkey "${key[Delete]}"  delete-char
+
+# Enable application mode when ZLE is active so terminfo sequences are sent
+if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
+  autoload -Uz add-zle-hook-widget
+  function _zle_app_mode_start { echoti smkx }
+  function _zle_app_mode_stop  { echoti rmkx }
+  add-zle-hook-widget -Uz zle-line-init   _zle_app_mode_start
+  add-zle-hook-widget -Uz zle-line-finish _zle_app_mode_stop
+fi
