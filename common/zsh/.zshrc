@@ -29,3 +29,6 @@ command -v direnv &>/dev/null && eval "$(direnv hook zsh)"
 [[ -f ~/.config/zsh/sudo.plugin.zsh ]] && source ~/.config/zsh/sudo.plugin.zsh
 
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
+
+eval "$(fnm env --use-on-cd)"
+export PATH="$HOME/.local/bin:$PATH"
