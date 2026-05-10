@@ -6,3 +6,4 @@ allow_images=true
 insensitive=true
 width=600
 height=300
+sort_order=alphabetical
