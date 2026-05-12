@@ -30,5 +30,5 @@ command -v direnv &>/dev/null && eval "$(direnv hook zsh)"
 
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
 
-eval "$(fnm env --use-on-cd)"
 export PATH="$HOME/.local/bin:$PATH"
+command -v fnm &>/dev/null && eval "$(fnm env --use-on-cd)"
