@@ -39,3 +39,57 @@ alias ydev='yarn dev'
 mkcd() {
     mkdir -p "$1" && cd "$1"
 }
+
+# Tar flags
+extract() {
+    case "$1" in
+        *.tar.gz|*.tgz)    tar xzf "$1" ;;
+        *.tar.bz2|*.tbz2)  tar xjf "$1" ;;
+        *.tar.xz)          tar xJf "$1" ;;
+        *.tar.zst)         tar --zstd -xf "$1" ;;
+        *.tar)             tar xf "$1"  ;;
+        *.zip)             unzip "$1"   ;;
+        *.7z)              7z x "$1"    ;;
+        *.gz)              gunzip "$1"  ;;
+        *.bz2)             bunzip2 "$1" ;;
+        *.xz)              unxz "$1"    ;;
+        *.zst)             zstd -d "$1" ;;
+        *)                 echo "Unknown archive format: $1" ;;
+    esac
+}
+
+# Pacman / paru — drift management
+alias plist='pacman -Qe' 
+alias pexp='pacman -Qe | awk "{print \$1}" | sort'
+alias paur='pacman -Qm'
+alias pupdt='sudo pacman -Syu'
+alias padd='sudo pacman -S'
+alias prm='sudo pacman -Rns'
+alias pcls='sudo pacman -Sc'
+
+pdiff() {
+    # Compare explicitly installed pacman packages vs playbook inventory
+    local playbook="${PLAYBOOK_DIR:-$HOME/Dev/personal/playbook}"
+    pacman -Qe | awk '{print $1}' | sort > /tmp/pac_installed.txt
+    grep -rh '^\s*-\s' "$playbook/roles/"{common,desktop,arch}"/tasks/main.yml" 2>/dev/null \
+        | sed 's/^[[:space:]]*-[[:space:]]*//' | sort > /tmp/pac_playbook.txt
+    echo "=== In system but not in playbook ==="
+    comm -23 /tmp/pac_installed.txt /tmp/pac_playbook.txt
+    echo ""
+    echo "=== In playbook but not installed ==="
+    comm -13 /tmp/pac_installed.txt /tmp/pac_playbook.txt
+    rm /tmp/pac_installed.txt /tmp/pac_playbook.txt
+}
+
+# Network
+alias myip='curl -s https://ifconfig.me'
+alias ports='ss -tulnp'
+
+# Disk
+alias df='df -h'
+alias du='du -sh'
+
+# Systemd
+alias sc='sudo systemctl'
+alias scs='systemctl status'
+alias scl='journalctl -xe'
